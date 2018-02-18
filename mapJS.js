@@ -12,6 +12,44 @@ var Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.
 
 var map = L.map('map',{layers : Stamen_TonerBackground}).setView([20.858376, 5.294442],2);
 
+
+//L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map); 
+ 
+var ligne = L.polyline([[-4.9160525,48.7531089],[-4.8901177,48.764789],[-4.8683167,48.7723695]], {color: 'red',weight:8}).addTo(map);  
+
+
+
+//Affichage France
+
+
+
+
+function lireFichierTexte(fichier){
+	 //On lance la requête pour récupérer le fichier
+	// var fichierBrut = new XMLHttpRequest();
+	 //fichierBrut.open("GET", fichier, false);
+
+var fileSystem=new ActiveXObject("Scripting.FileSystemObject");
+var fichierFrance=fileSystem.OpenTextFile(nomFicher, 2 ,true); 
+
+	 //On utilise une fonction sur l'événement "onreadystate"
+	 fichierBrut.onreadystatechange = function () {
+	 					if(fichierBrut.readyState === 4)
+	 					{
+	 						//On contrôle bien quand le statut est égal à 0
+		 					if(fichierBrut.status === 200 || fichierBrut.status == 0)
+		 					{
+		 						//On peut récupérer puis traiter le texte du fichier
+		 						var texteComplet = fichierBrut.responseText;
+								 alert(texteComplet);
+		 					}		
+	 					}
+	 }
+	 fichierBrut.send("./pays/France.txt");
+}
+
+lireFichierTexte(fichierFrance);
+
 		//Rendre draggable les div des pays
 	$( "#France" ).draggable({ revert: "valid" });
 	$( "#Canada" ).draggable({ revert: "valid" });
