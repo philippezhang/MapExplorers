@@ -20,17 +20,33 @@ var ligne = L.polyline([[-4.9160525,48.7531089],[-4.8901177,48.764789],[-4.86831
 
 
 //Affichage France
+/* MARCHE SUR FIREFOX MAIS AFFICHE ERREUR */
+// $.getJSON("fr.geojson",function(hoodData){
+//  L.geoJson( hoodData ).addTo(map);
+//}); 
+/* MARCHE SUR FIREFOX ET CHROME ET N'AFFICHE PAS D'ERREUR */
+ $.ajax({
+                  url: "fr.geojson",
+                  beforeSend: function(xhr){
+                    if (xhr.overrideMimeType)
+                    {
+                      xhr.overrideMimeType("application/json");
+                    }
+                  },
+                  dataType: 'json',
+                  data: null,
+                  success:  function(data, textStatus, request) {
+                    L.geoJson(data, { }).addTo(map);
+                  }
+                }); 
 
-
-
-
-function lireFichierTexte(fichier){
+//function lireFichierTexte(fichier){
 	 //On lance la requête pour récupérer le fichier
 	// var fichierBrut = new XMLHttpRequest();
 	 //fichierBrut.open("GET", fichier, false);
 
-var fileSystem=new ActiveXObject("Scripting.FileSystemObject");
-var fichierFrance=fileSystem.OpenTextFile(nomFicher, 2 ,true); 
+//var fileSystem=new ActiveXObject("Scripting.FileSystemObject");
+/*var fichierFrance=fileSystem.OpenTextFile(nomFicher, 2 ,true); 
 
 	 //On utilise une fonction sur l'événement "onreadystate"
 	 fichierBrut.onreadystatechange = function () {
@@ -46,9 +62,9 @@ var fichierFrance=fileSystem.OpenTextFile(nomFicher, 2 ,true);
 	 					}
 	 }
 	 fichierBrut.send("./pays/France.txt");
-}
+}*/
 
-lireFichierTexte(fichierFrance);
+//lireFichierTexte(fichierFrance);
 
 		//Rendre draggable les div des pays
 	$( "#France" ).draggable({ revert: "valid" });
