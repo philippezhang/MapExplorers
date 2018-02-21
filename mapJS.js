@@ -20,12 +20,11 @@ var ligne = L.polyline([[-4.9160525,48.7531089],[-4.8901177,48.764789],[-4.86831
 
 
 //Affichage France
-/* MARCHE SUR FIREFOX MAIS AFFICHE ERREUR */
-// $.getJSON("fr.geojson",function(hoodData){
-//  L.geoJson( hoodData ).addTo(map);
-//}); 
+
 /* MARCHE SUR FIREFOX ET CHROME ET N'AFFICHE PAS D'ERREUR */
- $.ajax({
+
+//AFFICHAGE FRANCE
+$.ajax({
                   url: "fr.geojson",
                   beforeSend: function(xhr){
                     if (xhr.overrideMimeType)
@@ -39,7 +38,68 @@ var ligne = L.polyline([[-4.9160525,48.7531089],[-4.8901177,48.764789],[-4.86831
                     L.geoJson(data, { }).addTo(map);
                   }
                 }); 
-
+//AFFICHAGE BELGIQUE
+$.ajax({
+                  url: "be.geojson",
+                  beforeSend: function(xhr){
+                    if (xhr.overrideMimeType)
+                    {
+                      xhr.overrideMimeType("application/json");
+                    }
+                  },
+                  dataType: 'json',
+                  data: null,
+                  success:  function(data, textStatus, request) {
+                    L.geoJson(data, { }).addTo(map);
+                  }
+                }); 
+//AFFICHAGE CANADA			
+$.ajax({
+                  url: "ca.geojson",
+                  beforeSend: function(xhr){
+                    if (xhr.overrideMimeType)
+                    {
+                      xhr.overrideMimeType("application/json");
+                    }
+                  },
+                  dataType: 'json',
+                  data: null,
+                  success:  function(data, textStatus, request) {
+                    L.geoJson(data, { }).addTo(map);
+                  }
+                }); 
+				
+				
+//AFFICHAGE ITALIE
+$.ajax({
+                  url: "it.geojson",
+                  beforeSend: function(xhr){
+                    if (xhr.overrideMimeType)
+                    {
+                      xhr.overrideMimeType("application/json");
+                    }
+                  },
+                  dataType: 'json',
+                  data: null,
+                  success:  function(data, textStatus, request) {
+                    L.geoJson(data, { }).addTo(map);
+                  }
+                }); 
+//AFFICHAGE JAPON
+$.ajax({
+                  url: "jp.geojson",
+                  beforeSend: function(xhr){
+                    if (xhr.overrideMimeType)
+                    {
+                      xhr.overrideMimeType("application/json");
+                    }
+                  },
+                  dataType: 'json',
+                  data: null,
+                  success:  function(data, textStatus, request) {
+                    L.geoJson(data, { }).addTo(map);
+                  }
+                }); 
 //function lireFichierTexte(fichier){
 	 //On lance la requête pour récupérer le fichier
 	// var fichierBrut = new XMLHttpRequest();
