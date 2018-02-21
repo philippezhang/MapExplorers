@@ -22,72 +22,11 @@ var ligne = L.polyline([[-4.9160525,48.7531089],[-4.8901177,48.764789],[-4.86831
 //Affichage France
 
 /* MARCHE SUR FIREFOX ET CHROME ET N'AFFICHE PAS D'ERREUR */
-
+var tabPays = ["../pays/fr.geojson", "../pays/be.geojson", "../pays/ca.geojson", "../pays/it.geojson", "../pays/jp.geojson"];
 //AFFICHAGE FRANCE
+for(i=0; i < tabPays.length; i++)
 $.ajax({
-                  url: "fr.geojson",
-                  beforeSend: function(xhr){
-                    if (xhr.overrideMimeType)
-                    {
-                      xhr.overrideMimeType("application/json");
-                    }
-                  },
-                  dataType: 'json',
-                  data: null,
-                  success:  function(data, textStatus, request) {
-                    L.geoJson(data, { }).addTo(map);
-                  }
-                }); 
-//AFFICHAGE BELGIQUE
-$.ajax({
-                  url: "be.geojson",
-                  beforeSend: function(xhr){
-                    if (xhr.overrideMimeType)
-                    {
-                      xhr.overrideMimeType("application/json");
-                    }
-                  },
-                  dataType: 'json',
-                  data: null,
-                  success:  function(data, textStatus, request) {
-                    L.geoJson(data, { }).addTo(map);
-                  }
-                }); 
-//AFFICHAGE CANADA			
-$.ajax({
-                  url: "ca.geojson",
-                  beforeSend: function(xhr){
-                    if (xhr.overrideMimeType)
-                    {
-                      xhr.overrideMimeType("application/json");
-                    }
-                  },
-                  dataType: 'json',
-                  data: null,
-                  success:  function(data, textStatus, request) {
-                    L.geoJson(data, { }).addTo(map);
-                  }
-                }); 
-				
-				
-//AFFICHAGE ITALIE
-$.ajax({
-                  url: "it.geojson",
-                  beforeSend: function(xhr){
-                    if (xhr.overrideMimeType)
-                    {
-                      xhr.overrideMimeType("application/json");
-                    }
-                  },
-                  dataType: 'json',
-                  data: null,
-                  success:  function(data, textStatus, request) {
-                    L.geoJson(data, { }).addTo(map);
-                  }
-                }); 
-//AFFICHAGE JAPON
-$.ajax({
-                  url: "jp.geojson",
+                  url: tabPays[i],
                   beforeSend: function(xhr){
                     if (xhr.overrideMimeType)
                     {
