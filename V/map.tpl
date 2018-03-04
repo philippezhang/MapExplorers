@@ -9,7 +9,12 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script type="text/javascript" src="mapJS.js"></script>
+<script type="text/javascript" src="./V/mapJS.js"></script>
+
+<script type="text/javascript">
+<?php echo "var phpVariable = '{$tabnumquest}';"; ?>
+
+</script>
 
 <style>
 .ui-widget-content { width: 130px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; background-color: #ccffcc;}
@@ -19,27 +24,24 @@
 
 </head>
 <body>
-	<p>2 interations possibles : 
-	<ul>
-	<li>Cliquer sur la map pour afficher le pays</li>
-	<li>D&eacute;placer les blocs DIV pays sur la map pour recentrer la carte sur un pays</li>
-	</ul>
+	<p><?php
+	echo($question); ?>
 	</p>
 	 <div id="map" style="width: 800px; height: 600px"></div>
 
-	<div id="France" class="ui-widget-content">
+	<div id="1" class="ui-widget-content">
 		<p>France</p>
 	</div>
-	<div id="Canada" class="ui-widget-content">
+	<div id="2" class="ui-widget-content">
 		<p>Canada</p>
 	</div>
-	<div id="Italie" class="ui-widget-content">
+	<div id="3" class="ui-widget-content">
 		<p>Italie</p>
 	</div>
-	<div id="Belgique" class="ui-widget-content">
+	<div id="4" class="ui-widget-content">
 		<p>Belgique</p>
 	</div>
-	<div id="Japan" class="ui-widget-content">
+	<div id="5" class="ui-widget-content">
 		<p>Japan</p>
 	</div>
 	<div id="info" class="ui-widget-content">

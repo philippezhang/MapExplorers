@@ -15,8 +15,6 @@ var map = L.map('map',{layers : Stamen_TonerBackground}).setView([20.858376, 5.2
 
 //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map); 
  
-var ligne = L.polyline([[-4.9160525,48.7531089],[-4.8901177,48.764789],[-4.8683167,48.7723695]], {color: 'red',weight:8}).addTo(map);  
-
 
 
 //Affichage France
@@ -66,15 +64,19 @@ $.ajax({
 //lireFichierTexte(fichierFrance);
 
 		//Rendre draggable les div des pays
-	$( "#France" ).draggable({ revert: "valid" });
-	$( "#Canada" ).draggable({ revert: "valid" });
-	$( "#Italie" ).draggable({ revert: "valid" });
-	$( "#Belgique" ).draggable({ revert: "valid" });
-	$( "#Japan" ).draggable({ revert: "valid" });
+	$( "#1" ).draggable({ revert: "valid" });
+	$( "#2" ).draggable({ revert: "valid" });
+	$( "#3" ).draggable({ revert: "valid" });
+	$( "#4" ).draggable({ revert: "valid" });
+	$( "#5" ).draggable({ revert: "valid" });
 	
 	//Rendre la map droppable
 	 $( "#map" ).droppable({
-		 
+		accept: function(data){
+			if(data.attr("id")==phpVariable){
+				return true;
+			}
+		}, 
 		 //Evenement lors du drop
 		drop: function( event, ui ) {
 			
@@ -111,7 +113,7 @@ $.ajax({
 				//affichage pop up du pays dropped
 				var monPopup = L.popup();
 				monPopup.setLatLng([lati,longi])
-				.setContent("<h1>Hello !</h1>")
+				.setContent("<h1>Bonne réponse !</h1>")
 				.openOn(map);
 				
 				//MAJ de la map à la position (lati, longi) du pays

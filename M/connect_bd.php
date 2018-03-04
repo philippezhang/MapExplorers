@@ -10,9 +10,9 @@
 
 //à l'iut
 $hote="localhost";   		
-$login="cassanel";  		
-$pass="cassanel"; 
-$bd="pweb17_cassanel"; 
+$login="root";  		
+$pass=""; 
+$bd="bdd_quizz"; 
 
 if (!isset($link)) {
 $link = mysqli_connect($hote, $login, $pass) 
