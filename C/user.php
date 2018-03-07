@@ -47,16 +47,68 @@ function connect () {
 function lancer_test(){
 	
 	require ('M/user_bd.php');
+	
 	$tabThemes = tab_theme();
 	$quest=$tabThemes[array_rand($tabThemes, 1)]['idtheme']; // theme choisi au hasard
 	$tabquest = tab_questions($quest);
-	$tabquestionunique = $tabquest[array_rand($tabquest, 1)];
+	$tab2 = array_rand($tabquest, 1);
+	$tabquestionunique = $tabquest[$tab2];
 	$question = $tabquestionunique['intitulequestion'];
 	$tabnumquest = $tabquestionunique['idlieu'];
 	
+	$_SESSION['idquestactuelle'] = $tab2;
+	$_SESSION['tabquest'] = $tabquest;
+	$_SESSION['score'] = 0; //initialisation du score
 	require("./V/map.tpl");
 	
 }
+
+function bonne_rep(){
+	$_SESSION['score'] +=1;
+	continuer_test();
+}
+
+
+function mauvaise_rep(){
+	$_SESSION['score'] -=1;
+	continuer_test();
+}
+
+function continuer_test(){
+	$_SESSION['tabquest'][$_SESSION['idquestactuelle']] = null;
+	if (check_tableauquest_vide() == true){
+		require("./V/fin.tpl"); //jeu fini
+	}
+	else{
+		while ($_SESSION['tabquest'][$tab2] == null){
+			$tab2 = array_rand($_SESSION['tabquest'], 1);
+		}
+		$tabquestionunique = $_SESSION['tabquest'][$tab2];
+		$question = $tabquestionunique['intitulequestion'];
+		$tabnumquest = $tabquestionunique['idlieu'];
+		$_SESSION['idquestactuelle'] = $tab2;
+		require("./V/map.tpl");
+	}
+}
+
+function check_tableauquest_vide(){
+	$cpt = 0;
+	foreach ($arr as $cle) {
+		if ($cle == null){
+			$cpt+=1;
+		}
+	}
+	if ($cpt == count($_SESSION['tabquest']))
+		return true;
+	else
+		return false;
+}
+
+
+
+
+
+
 
 
 
