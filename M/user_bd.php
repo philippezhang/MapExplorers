@@ -66,6 +66,26 @@ function tab_questions($id_theme) {
 	}
 }
 
+function tab_lieux($idcarte){
+	
+		require ("connect_bd.php") ; //connexion $link à MYSQL et sélection de la base
+		$select= "select * from lieu where idcarte='%s'"; 
+		$req = sprintf($select,$idcarte);
+	
+		$res = mysqli_query($link, $req)	
+		or die (utf8_encode("erreur de requête : ") . $req); 
+			
+		if (mysqli_num_rows ($res) == 0)
+			return false; //"pas de contacts";
+		else {
+			$result_questions= array();
+			while ($result = mysqli_fetch_assoc($res) and isset($result)) {
+				$result_lieux[] = $result; 
+			}
+			return $result_lieux;
+	}
+}
+
 function tab_theme() {
 	
 	require ("connect_bd.php") ; //connexion $link à MYSQL et sélection de la base

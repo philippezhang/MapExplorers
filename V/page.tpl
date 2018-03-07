@@ -13,7 +13,6 @@
 		-->
 </head>
 <body>
-
 <header>
 	<div id="connect">
 	<a id="cnx" href="" title="connexion">connexion</a> 
@@ -36,4 +35,11 @@
 </div>
 
 </body>
+
+<script>
+body{
+cursor:url(V/img/alili.png),pointer;
+
+}
+</script>
 </html>

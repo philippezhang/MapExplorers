@@ -55,7 +55,7 @@ function lancer_test(){
 	$tabquestionunique = $tabquest[$tab2];
 	$question = $tabquestionunique['intitulequestion'];
 	$tabnumquest = $tabquestionunique['idlieu'];
-	
+	$tab_lieux = tab_lieux($quest);
 	$_SESSION['idquestactuelle'] = $tab2;
 	$_SESSION['tabquest'] = $tabquest;
 	$_SESSION['score'] = 0; //initialisation du score

@@ -63,12 +63,10 @@ $.ajax({
 
 //lireFichierTexte(fichierFrance);
 
+
+
 		//Rendre draggable les div des pays
-	$( "#1" ).draggable({ revert: "valid" });
-	$( "#2" ).draggable({ revert: "valid" });
-	$( "#3" ).draggable({ revert: "valid" });
-	$( "#4" ).draggable({ revert: "valid" });
-	$( "#5" ).draggable({ revert: "valid" });
+	$( ".pays" ).draggable({ revert: "valid" });
 	
 	//Rendre la map droppable
 	 $( "#map" ).droppable({

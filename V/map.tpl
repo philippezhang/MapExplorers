@@ -29,23 +29,13 @@
 	</p>
 	 <div id="map" style="width: 800px; height: 600px"></div>
 
-	<div id="1" class="ui-widget-content">
-		<p>France</p>
-	</div>
-	<div id="2" class="ui-widget-content">
-		<p>Canada</p>
-	</div>
-	<div id="3" class="ui-widget-content">
-		<p>Italie</p>
-	</div>
-	<div id="4" class="ui-widget-content">
-		<p>Belgique</p>
-	</div>
-	<div id="5" class="ui-widget-content">
-		<p>Japan</p>
-	</div>
-	<div id="info" class="ui-widget-content">
-		<p>Location (Gps)</p>
-	</div>
+<?php	
+		
+		
+		foreach( $tab_lieux as $key => $value){
+		//var_dump($value);
+			echo("<div id =".$value['idlieu']." class='ui-widget-content pays'><p>".$value['intitulelieu']."</p></div>");
+		} 
+?>
 </body>
 </html>
