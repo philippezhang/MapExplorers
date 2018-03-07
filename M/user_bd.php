@@ -66,6 +66,26 @@ function tab_questions($id_theme) {
 	}
 }
 
+function tab_theme() {
+	
+	require ("connect_bd.php") ; //connexion $link à MYSQL et sélection de la base
+	$select= "select * from theme"; 
+	$req = sprintf($select);
+	
+	$res = mysqli_query($link, $req)	
+		or die (utf8_encode("erreur de requête : ") . $req); 
+		
+	if (mysqli_num_rows ($res) == 0)
+		return false; //"pas de contacts";
+	else {
+		$result_questions= array();
+		while ($result = mysqli_fetch_assoc($res) and isset($result)) {
+			$result_questions[] = $result; 
+		}
+		return $result_questions;
+	}
+}
+
 
 
 

@@ -45,9 +45,10 @@ function connect () {
 }
 
 function lancer_test(){
-	$quest=1;
 	
 	require ('M/user_bd.php');
+	$tabThemes = tab_theme();
+	$quest=$tabThemes[array_rand($tabThemes, 1)]['idtheme']; // theme choisi au hasard
 	$tabquest = tab_questions($quest);
 	$tabquestionunique = $tabquest[array_rand($tabquest, 1)];
 	$question = $tabquestionunique['intitulequestion'];
