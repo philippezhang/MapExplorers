@@ -67,6 +67,7 @@ function lancer_test(){
 
 function bonne_rep(){
 	$_SESSION['score'] +=1;
+	die("test");
 	continuer_test();
 }
 
@@ -74,7 +75,7 @@ function bonne_rep(){
 
 
 function mauvaise_rep(){
-	//$_SESSION['score'] -=1;
+	$_SESSION['score'] -=1;
 	continuer_test();
 }
 if(isset($_POST['act']) && !empty($_POST['act'])) {
@@ -92,9 +93,9 @@ function continuer_test(){
 		require("./V/fin.tpl"); //jeu fini
 	}
 	else{
-		//while ($_SESSION['tabquest'][$tab2] == null){
+		while ($_SESSION['tabquest'][$tab2] == null){
 			$tab2 = array_rand($_SESSION['tabquest'], 1);
-		//}
+		}
 		$tabquestionunique = $_SESSION['tabquest'][$tab2];
 		$question = $tabquestionunique['intitulequestion'];
 		$tabnumquest = $tabquestionunique['idlieu'];

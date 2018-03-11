@@ -11,10 +11,9 @@ var Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.
 });
 
 var map = L.map('map',{layers : Stamen_TonerBackground}).setView([20.858376, 5.294442],2);
-
-
 //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map); 
  
+
 
 
 //Affichage France
@@ -70,14 +69,38 @@ $.ajax({
 	
 	//Rendre la map droppable
 	 $( "#map" ).droppable({
-		accept: function(data){
+		/*accept: function(data){
 			if(data.attr("id")==phpVariable){
 				return true;
 			}
-		}, 
+		},*/ 
 		 //Evenement lors du drop
 		drop: function( event, ui ) {
-			
+			if(ui.draggable.attr("id")==phpVariable){
+				$.ajax({ url: 'C/user.php',
+					data: {act: 'bonne'},
+					type: 'POST',
+					success: function(output) {
+					  console.log("réussi");
+                      alert(output);
+					},
+					 error: function(xhr, error){
+						alert(xhr.responseText);
+					 }
+				});
+			}
+			else{
+				$.ajax({ url: 'C/user.php',
+					data: {act: 'mauvaise'},
+					type: 'post',
+					success: function(output) {
+                      alert(output);
+					},
+					 error: function(xhr, error){
+						alert(xhr.responseText);
+					 }
+				});
+			}
 			//Recupère l'id du block div "dropped" dans la map
 			var IdPays = ui.draggable.attr("id");
 			
@@ -85,7 +108,7 @@ $.ajax({
 			chaine+="Pays : "+IdPays+"</br>";
 			
 			//Requete AJAX pour récupérer les coordonnées (lati, longi) du pays
-			$.ajax({
+			/*$.ajax({
 			    type: 'GET',
 			    url: "http://nominatim.openstreetmap.org/search",
 			    dataType: 'jsonp',
@@ -118,7 +141,7 @@ $.ajax({
 				map.panTo(new L.LatLng(lati, longi));		
 				
 			    }
-			});
+			});*/
 			
 			
 		}

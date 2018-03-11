@@ -12,8 +12,9 @@
 <script type="text/javascript" src="./V/mapJS.js"></script>
 
 <script type="text/javascript">
-<?php echo "var phpVariable = '{$tabnumquest}';"; ?>
-
+<?php 
+echo "var phpVariable = '{$tabnumquest}';";
+ ?>
 </script>
 
 <style>
@@ -26,7 +27,10 @@
 <body>
 	<p><?php
 	echo($question); ?>
+	Score : <?php echo $_SESSION['score'] ?>
+	
 	</p>
+	
 	 <div id="map" style="width: 800px; height: 600px"></div>
 
 <?php	
