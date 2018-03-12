@@ -1,6 +1,6 @@
 
 <?php
-
+session_start();
 
 function page () {
 	$login = "tapez votre login";
@@ -58,6 +58,7 @@ function lancer_test(){
 	$question = $tabquestionunique['intitulequestion'];
 	$tabnumquest = $tabquestionunique['idlieu'];
 	$tab_lieux = tab_lieux($quest);
+	$_SESSION['tablieux'] = $tab_lieux;
 	$_SESSION['idquestactuelle'] = $tab2;
 	$_SESSION['tabquest'] = $tabquest;
 	$_SESSION['score'] = 0; //initialisation du score
@@ -74,7 +75,7 @@ function bonne_rep(){
 
 
 function mauvaise_rep(){
-	//$_SESSION['score'] -=1;
+	$_SESSION['score'] -=1;
 	continuer_test();
 }
 if(isset($_POST['act']) && !empty($_POST['act'])) {
@@ -99,13 +100,13 @@ function continuer_test(){
 		$question = $tabquestionunique['intitulequestion'];
 		$tabnumquest = $tabquestionunique['idlieu'];
 		$_SESSION['idquestactuelle'] = $tab2;
-		require("./V/map.tpl");
+		require("../V/map.tpl");
 	}
 }
 
 function check_tableauquest_vide(){
 	$cpt = 0;
-	foreach ($arr as $cle) {
+	foreach ($_SESSION['tabquest'] as $cle) {
 		if ($cle == null){
 			$cpt+=1;
 		}

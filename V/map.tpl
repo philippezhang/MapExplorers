@@ -36,7 +36,7 @@ echo "var phpVariable = '{$tabnumquest}';";
 <?php	
 		
 		
-		foreach( $tab_lieux as $key => $value){
+		foreach( $_SESSION['tablieux'] as $key => $value){
 		//var_dump($value);
 			echo("<div id =".$value['idlieu']." class='ui-widget-content pays'><p>".$value['intitulelieu']."</p></div>");
 		} 

@@ -81,11 +81,10 @@ $.ajax({
 					data: {act: 'bonne'},
 					type: 'POST',
 					success: function(output) {
-					  console.log("réussi");
-                      alert(output);
+                      //alert(output);
+					  
 					},
 					 error: function(xhr, error){
-						alert(xhr.responseText);
 					 }
 				});
 			}
@@ -94,10 +93,11 @@ $.ajax({
 					data: {act: 'mauvaise'},
 					type: 'post',
 					success: function(output) {
-                      alert(output);
+					  $(window).load(output);
+                      //alert(output);
 					},
 					 error: function(xhr, error){
-						alert(xhr.responseText);
+						 
 					 }
 				});
 			}
