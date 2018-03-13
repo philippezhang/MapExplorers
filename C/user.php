@@ -10,6 +10,16 @@ function page () {
 	require ('V/page.tpl'); /*affichage de la page du site*/
 }
 
+
+function deconnexion(){
+	require("./M/user_BD.php");
+	deconnect_user(); //passe bConnect de l'étudiant a 0 dans la base
+	session_destroy();//détruit la session
+	$nexturl = "index.php"; 
+	header ("Location:" . $nexturl); //renvoie à l'index
+}
+
+
 function connect () {
 	/* affichage propre du tableau $_POST :
 	echo ("<pre> POST= <br/>");
@@ -29,7 +39,10 @@ function connect () {
 			if (verifS_ident($login, $pass, $err) && verif_bd_user($login, $pass, $profil)) {
 				$_SESSION['profil'] = $profil;
 				$_SESSION['profil']['bConnect'] = 1;
-				$nexturl = "index.php?controle=etudiant&action=lancer_test";
+				$nexturl = "index.php?controle=user&action=lancer_test";
+				
+				$_SESSION['profile'] = $profil;
+				
 				header ("Location:" . $nexturl);
 			}
 			else{
@@ -52,15 +65,15 @@ function lancer_test(){
 	
 	$tabThemes = tab_theme();
 	$quest=$tabThemes[array_rand($tabThemes, 1)]['idtheme']; // theme choisi au hasard
-	$tabquest = tab_questions($quest);
-	$tab2 = array_rand($tabquest, 1);
-	$tabquestionunique = $tabquest[$tab2];
-	$question = $tabquestionunique['intitulequestion'];
-	$tabnumquest = $tabquestionunique['idlieu'];
+	$tabquest = tab_questions($quest); //tableaux des questions générée à partir du thème choisii au hasard
+	$idquest = array_rand($tabquest, 1); //id de la question choisi parmi les questions du tableau 
+	$questionchoisie = $tabquest[$idquest]; 
+	$intitulequestionchoisie = $questionchoisie['intitulequestion'];
+	$tabnumquestcorrecte = $questionchoisie['idlieu'];
 	$tab_lieux = tab_lieux($quest);
-	$_SESSION['tablieux'] = $tab_lieux;
-	$_SESSION['idquestactuelle'] = $tab2;
-	$_SESSION['tabquest'] = $tabquest;
+	$_SESSION['tablieux'] = $tab_lieux; // ON MET DANS DES VARIABLE SESSION LES INFORMATIONS QU'ON REUTILISERA DANS CONTINUER_TEST
+	$_SESSION['idquestactuelle'] = $idquest; // ICI : TABLEAUX DES LIEUX, L'ID DE LA QUESTION CHOISIE AU LANCEMENT DU TEST, LE TABLEAUX DES QUESTIONS 
+	$_SESSION['tabquest'] = $tabquest; // ET LE SCORE
 	$_SESSION['score'] = 0; //initialisation du score
 	require("./V/map.tpl");
 	
@@ -83,22 +96,25 @@ if(isset($_POST['act']) && !empty($_POST['act'])) {
     switch($act) {
         case 'bonne' : bonne_rep();break;
         case 'mauvaise' : mauvaise_rep();break;
-        // ...etc...
     }
 }
 
 function continuer_test(){
+	var_dump($_SESSION['tabquest']);
+	
 	$_SESSION['tabquest'][$_SESSION['idquestactuelle']] = null;
 	if (check_tableauquest_vide() == true){
 		require("./V/fin.tpl"); //jeu fini
 	}
 	else{
-		//while ($_SESSION['tabquest'][$tab2] == null){
+		$tab2 = array_rand($_SESSION['tabquest'], 1);
+		while ($_SESSION['tabquest'][$tab2] == null){
 			$tab2 = array_rand($_SESSION['tabquest'], 1);
-		//}
+		}
 		$tabquestionunique = $_SESSION['tabquest'][$tab2];
-		$question = $tabquestionunique['intitulequestion'];
-		$tabnumquest = $tabquestionunique['idlieu'];
+		$intitulequestionchoisie = $tabquestionunique['intitulequestion'];
+		$tabnumquestcorrecte = $tabquestionunique['idlieu'];
+		var_dump($tabnumquestcorrecte);
 		$_SESSION['idquestactuelle'] = $tab2;
 		require("../V/map.tpl");
 	}

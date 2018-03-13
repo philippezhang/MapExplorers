@@ -16,15 +16,14 @@ function verif_bd_user($pseudo,$mdp,&$profil) {
 		or die (utf8_encode("erreur de requête : ") . $req); 
 	if (mysqli_num_rows ($res) > 0) {
 		$profil = mysqli_fetch_assoc($res);
-		$profil['role'] = "etudiant";
-		//var_dump($profil);
+		var_dump($profil);
 		
 		
 		//change la table etudiant dans la base passe bActif a 1 pour l'etudiant qui se connecte
-		//$select= "update etudiant set bConnect = '1' where id_etu = '%s'"; 
-		//$req = sprintf($select,$profil['id_etu']);
-		//$res = mysqli_query($link, $req)	
-		//or die (utf8_encode("erreur de requête : ") . $req); 
+		$select= "update joueur set connect = '1' where idjoueur = '%s'"; 
+		$req = sprintf($select,$profil['idjoueur']);
+		$res = mysqli_query($link, $req)	
+		or die (utf8_encode("erreur de requête : ") . $req); 
 		
 		return true;
 	}
@@ -32,6 +31,14 @@ function verif_bd_user($pseudo,$mdp,&$profil) {
 		$profil = null;
 		return false;
 	}
+}
+
+function deconnect_user(){
+	require ("connect_bd.php") ; //connexion $link à MYSQL et sélection de la base
+	$select= "update joueur set connect = '0' where idjoueur = '%s'"; 
+	$req = sprintf($select,$_SESSION['profil']['idjoueur']);
+	$res = mysqli_query($link, $req)	
+	or die (utf8_encode("erreur de requête : ") . $req); 
 }
 
 function verifS_ident($pseudo, $mdp, &$err) {

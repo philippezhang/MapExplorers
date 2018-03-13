@@ -10,8 +10,8 @@
 
 //à l'iut
 $hote="localhost";   		
-$login="cassanel";  		
-$pass="cassanel"; 
+$login="root";  		
+$pass=""; 
 $bd="pweb17_cassanel"; 
 
 // //joueur de la base

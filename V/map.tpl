@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
 <?php 
-echo "var phpVariable = '{$tabnumquest}';";
+echo "var phpVariable = '{$tabnumquestcorrecte}';";
  ?>
 </script>
 
@@ -26,7 +26,7 @@ echo "var phpVariable = '{$tabnumquest}';";
 </head>
 <body>
 	<p><?php
-	echo($question); ?>
+	echo($intitulequestionchoisie); ?>
 	Score : <?php echo $_SESSION['score'] ?>
 	
 	</p>
@@ -41,5 +41,8 @@ echo "var phpVariable = '{$tabnumquest}';";
 			echo("<div id =".$value['idlieu']." class='ui-widget-content pays'><p>".$value['intitulelieu']."</p></div>");
 		} 
 ?>
+
+<a href="index.php?controle=user&action=deconnexion">Déconnexion </a>
+
 </body>
 </html>

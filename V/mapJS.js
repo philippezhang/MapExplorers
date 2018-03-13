@@ -1,16 +1,18 @@
 window.onload = function () {
-
+$(document).ready(function () {
+    mettreDrag();
+	mettreDrop();
+});
+$(document).ajaxComplete(function () {
+    mettreDrag();
+	mettreDrop();
+});
 //L.tileLayer('http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg').addTo(map);
 
-var Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png'
-});
 
-var map = L.map('map',{layers : Stamen_TonerBackground}).setView([20.858376, 5.294442],2);
+
+
+
 //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map); 
  
 
@@ -63,11 +65,21 @@ $.ajax({
 //lireFichierTexte(fichierFrance);
 
 
-
 		//Rendre draggable les div des pays
-	$( ".pays" ).draggable({ revert: "valid" });
+	function mettreDrag(){
+		$( ".pays" ).draggable({ revert: "valid" });
+	}
 	
 	//Rendre la map droppable
+	function mettreDrop(){
+	var Stamen_TonerBackground = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20,
+	ext: 'png'
+	});
+	var map = L.map('map',{layers : Stamen_TonerBackground}).setView([20.858376, 5.294442],2);
 	 $( "#map" ).droppable({
 		/*accept: function(data){
 			if(data.attr("id")==phpVariable){
@@ -145,6 +157,7 @@ $.ajax({
 			
 		}
 	});
+	}
 	
 	//Sur le click de la map, ajout d'un marqueur sur la carte avec le nom du pays
 	map.on('click', onClick);
