@@ -81,7 +81,7 @@ $.ajax({
 					data: {act: 'bonne'},
 					type: 'POST',
 					success: function(output) {
-                      //alert(output);
+                      $("*").html(output);
 					  
 					},
 					 error: function(xhr, error){
@@ -93,8 +93,7 @@ $.ajax({
 					data: {act: 'mauvaise'},
 					type: 'post',
 					success: function(output) {
-					  $(window).load(output);
-                      //alert(output);
+                      $("*").html(output);
 					},
 					 error: function(xhr, error){
 						 
