@@ -60,9 +60,7 @@ function connect () {
 }
 
 function lancer_test(){
-	
 	require ('M/user_bd.php');
-	
 	$tabThemes = tab_theme();
 	$quest=$tabThemes[array_rand($tabThemes, 1)]['idtheme']; // theme choisi au hasard
 	$tabquest = tab_questions($quest); //tableaux des questions générée à partir du thème choisii au hasard
@@ -100,11 +98,11 @@ if(isset($_POST['act']) && !empty($_POST['act'])) {
 }
 
 function continuer_test(){
-	var_dump($_SESSION['tabquest']);
-	
 	$_SESSION['tabquest'][$_SESSION['idquestactuelle']] = null;
 	if (check_tableauquest_vide() == true){
-		require("./V/fin.tpl"); //jeu fini
+		require("../M/user_bd.php");
+		save_score();
+		require("../V/fin.tpl"); //jeu fini
 	}
 	else{
 		$tab2 = array_rand($_SESSION['tabquest'], 1);
@@ -114,7 +112,6 @@ function continuer_test(){
 		$tabquestionunique = $_SESSION['tabquest'][$tab2];
 		$intitulequestionchoisie = $tabquestionunique['intitulequestion'];
 		$tabnumquestcorrecte = $tabquestionunique['idlieu'];
-		var_dump($tabnumquestcorrecte);
 		$_SESSION['idquestactuelle'] = $tab2;
 		require("../V/map.tpl");
 	}

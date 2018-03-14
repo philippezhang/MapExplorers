@@ -12,7 +12,7 @@
 $hote="localhost";   		
 $login="root";  		
 $pass=""; 
-$bd="pweb17_cassanel"; 
+$bd="pwebc"; 
 
 // //joueur de la base
 // login=Sacdeneu mdp=root
